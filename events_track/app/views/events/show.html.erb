@@ -1,0 +1,94 @@
+<style>
+
+* { 
+	margin: 0; 
+	padding: 0; 
+}
+body { 
+	font: 14px/1.4 Georgia, Serif; 
+}
+#page-wrap {
+	margin: 50px;
+}
+p {
+	margin: 20px 0; 
+}
+
+	/* 
+	Generic Styling, for Desktops/Laptops 
+	*/
+	table { 
+		width: 100%; 
+		border-collapse: collapse; 
+	}
+	/* Zebra striping */
+	tr:nth-of-type(odd) { 
+		background: #eee; 
+	}
+	th { 
+		background: #555; 
+		color: white; 
+		font-weight: bold; 
+		width: 200px;
+	}
+	td, th { 
+		padding: 6px; 
+		border: 1px solid #ccc; 
+		text-align: left; 
+	}
+
+</style>
+
+<br>
+<h2>Event Details </h2>
+<br>
+<table>
+  <tr>
+    <th>Device/Host Name:</th>
+    <td><%= @event.hostname %></td>
+  </tr>
+  <tr>
+    <th>Service/Component Name</th>
+    <td><%= @event.servicename %></td>
+  </tr>
+  <tr>
+    <th>Severity</th>
+    <td><%= @event.severity %></td>
+  </tr>
+  <tr>
+    <th>Alert Summary</th>
+    <td><%= @event.message %></td>
+  </tr>
+  <tr>
+    <th>Ticket Number</th>
+    <td><%= @event.ticket_number %></td>
+  </tr>
+  <tr>
+    <th>Ticket Status</th>
+    <td><%= @event.ticket_status %></td>
+  </tr>
+  <tr>
+    <th>Event Source</th>
+    <td><%= @event.event_source %></td>
+  </tr>
+  <tr>
+    <th>First Occurance</th>
+    <td><%= @event.first_time %></td>
+  </tr>
+  <tr>
+    <th>Event Count</th>
+    <td><%= @event.count %></td>
+  </tr>
+  <tr>
+    <th>Event Status</th>
+    <td><%= @event.event_status %></td>
+  </tr>
+  <tr>
+    <th>Created at</th>
+    <td><%= @event.first_time %></td>
+  </tr>
+  <tr>
+    <th>Event ID</th>
+    <td><%= @event.eventid %></td>
+  </tr>
+</table>

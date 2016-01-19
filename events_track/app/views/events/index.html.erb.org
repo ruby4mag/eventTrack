@@ -1,0 +1,119 @@
+<h1>Events</h1>
+
+<table  id="events" class="display pretty" data-source="<%= events_url(format: "json") %>">
+  <thead>
+    <tr>
+      <th>Hostname</th>
+      <th>Service</th>
+      <th>Severity</th>
+      <th>Message</th>
+      <th>Ticket status </th>
+      <th>Ticket Number</th>
+      <th>Source</th>
+      <th>First Time</th>
+      <th>Last Occurance</th>
+      <th>Event status</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+
+<script>
+$(document).ready(function() {
+var otable= $("#events").DataTable({
+"fnDrawCallback": function( oSettings ) {
+    prettyPhotoLoad();
+    addSevcolor();
+    },
+"pageLength": "50",
+"aoColumnDefs": [
+   {
+       "aTargets": [2],
+       "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+ 
+       if (sData == "5") {
+           $(nTd).css('background-color', '#ffb3b3');
+	   $(nTd).html('CRITICAL');
+       }
+       if (sData == "4") {
+           $(nTd).css('background-color', '#F7BE81');
+	   $(nTd).html('MAJOR');
+       }
+       if (sData == "3") {
+           $(nTd).css('background-color', '#ffffb3');
+	   $(nTd).html('WARNING');
+       }
+       if (sData == "0") {
+           $(nTd).css('background-color', '#b3ffb3');
+	   $(nTd).html('CLEAR');
+       }
+    }
+},
+   {
+       "aTargets": [4],
+       "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+ 
+       if (sData == "1") {
+           $(nTd).html('NOT CREATED');
+       }
+       if (sData == "2") {
+           $(nTd).html('CREATED');
+       }
+    }
+},
+   {
+       "aTargets": [9],
+       "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+
+       if (sData == "1") {
+           $(nTd).html('OPEN');
+       }
+       if (sData == "2") {
+           $(nTd).html('CLEARED');
+       }
+    }
+}
+
+
+
+
+
+
+
+],
+     "bJQueryUI":true,
+      "bSort":true,
+      "bSortClasses": false,
+      "bPaginate":true,
+      "bProcessing": false,
+      "bServerSide": true,
+      "sPaginationType":"full_numbers",
+      "sAjaxSource": 'http://localhost:3000/events.json',
+	"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      "asStripeClasses": [ '' ]
+});
+
+setInterval( function () {
+    otable.ajax.reload();
+}, 20000 );
+
+
+    prettyPhotoLoad();
+});
+
+
+function prettyPhotoLoad()
+{
+     // apply prettyPhoto plugin for video previews
+     $("a[rel^='prettyPhoto']").prettyPhoto({social_tools: false,deeplinking: false});    
+}
+
+function addSevcolor ()
+{
+}
+
+</script>
+
